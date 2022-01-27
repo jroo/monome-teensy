@@ -2,8 +2,8 @@
 
 TeensyGrid::TeensyGrid(byte cols, byte rows)
 {
-  _cols = cols;
-  _rows = rows;
+  cols = cols;
+  rows = rows;
 }
 
 void TeensyGrid::setup()
@@ -11,11 +11,48 @@ void TeensyGrid::setup()
   _myusb.begin();
   _userial.begin(115200);
   Serial.begin(115200);
+
+  for (byte y=0; y<16; y++) {
+    for (byte x=0; x<16; x++) {
+      coords c = {x, y};
+      byte k = coordsToKey(c);
+      keyDown[k] = 0;
+      keyUp[k] = 0;
+      keyPressed[k] = 0;
+    }
+  }
 }
 
 void TeensyGrid::loop() 
 {
+  for (int i=0; i<256; i++) {
+    keyDown[i] = 0;
+    keyUp[i] = 0;
+  }
   _myusb.Task();
+
+  while (_userial.available()) {
+
+    if (_userial.peek() == 33) {
+      _userial.read(); //throw away first byte
+      byte x = _userial.read();
+      byte y = _userial.read();
+      coords c = {x, y};
+      byte k = coordsToKey(c);
+      keyDown[k] = 1;
+      keyPressed[k] = 1;
+      _userial.flush();
+    } else if (_userial.peek() == 32) {
+      _userial.read();
+      byte x = _userial.read();
+      byte y = _userial.read();
+      coords c = {x, y};
+      byte k = coordsToKey(c);
+      keyUp[k] = 1;
+      keyPressed[k] = 0;
+      _userial.flush();
+    } 
+  }
 }
 
 void TeensyGrid::setOverallInt(byte i)
@@ -131,4 +168,15 @@ void TeensyGrid::_send3x32(byte b1, byte b2, byte b3, byte b4[32])
     _userial.write(b4[i]);
   }
   _userial.flush();
+}
+
+byte TeensyGrid::coordsToKey(coords c) {
+  return (c.y * 16) + c.x;
+}
+
+coords TeensyGrid::keyToCoords(byte k) {
+  byte x = k % 16;
+  byte y = byte(k / 16);
+  coords c = {x, y};
+  return c;
 }

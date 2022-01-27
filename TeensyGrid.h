@@ -4,10 +4,17 @@
 #include "Arduino.h"
 #include "USBHost_t36.h"
 
+struct coords {
+  byte x;
+  byte y;
+};
+
 class TeensyGrid 
 {
   public:
     TeensyGrid(byte cols, byte rows);
+    byte _cols;
+    byte _rows;
     void setup();
     void loop();
     void setOverallInt(byte i);
@@ -21,10 +28,13 @@ class TeensyGrid
     void setLevelCol(byte x, byte y, byte d[8]);
     void setMap(byte x, byte y, byte d[8]);
     void setLevelMap(byte x, byte y, byte d[32]);
+    byte coordsToKey(coords c);
+    coords keyToCoords(byte k);
+    byte keyDown[256];
+    byte keyPressed[256];
+    byte keyUp[256];
     
   private:
-    byte _cols;
-    byte _rows;
     USBHost _myusb;
     USBSerial _userial = USBSerial(_myusb);
     void _send1(byte b1);
