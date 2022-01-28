@@ -1,6 +1,6 @@
 # monome-teensy
 
-allows teensy devices to communicate with monome grids via [monome serial protocol](https://monome.org/docs/serialosc/serial.txt)
+allows [teensy development boards](https://www.pjrc.com/teensy/) to communicate with monome grids via [monome serial protocol](https://monome.org/docs/serialosc/serial.txt)
 
 - works with teensy 3.6, 4.0 and 4.1 (when usb host is configured)
 - designed for varibright 128 grids 
