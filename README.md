@@ -14,7 +14,7 @@ see monome-teensy.ino for examples
 
 ### functionality: grid
 
-the functions available in the library are
+the functions available in the library are:
 
 ```c
 setOverallInt();
@@ -32,6 +32,7 @@ setLevelMap();
 
 ### to do:
 - more documentation
+- sys commands
 - arc support
 - support multiple devices at once
 - tilt support
