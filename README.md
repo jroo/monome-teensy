@@ -12,12 +12,6 @@ the library is designed to work with all monome grids but has only been tested o
 
 see monome-teensy.ino for examples
 
-### to do:
-- more documentation
-- arc support
-- support multiple devices at once
-- tilt support
-
 ### functionality: grid
 
 the functions available in the library are
@@ -35,3 +29,9 @@ setLevelCol();
 setMap();
 setLevelMap();
 ```
+
+### to do:
+- more documentation
+- arc support
+- support multiple devices at once
+- tilt support
