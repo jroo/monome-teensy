@@ -17,3 +17,21 @@ see monome-teensy.ino for examples
 - arc support
 - support multiple devices at once
 - tilt support
+
+### functionality: grid
+
+the functions available in the library are
+
+```c
+setOverallInt();
+setLed();
+setLedInt();
+setAll();
+setAllInt();    
+setRow();
+setLevelRow();
+setCol();
+setLevelCol();
+setMap();
+setLevelMap();
+```
