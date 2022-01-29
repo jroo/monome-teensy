@@ -30,7 +30,7 @@ setMap();
 setLevelMap();
 ```
 
-### led grid example
+### led-grid example
 
 let's create a sketch that by sets the intensity of all leds in a grid to zero then gradually increases and decreases the intensity
 
@@ -77,6 +77,44 @@ void loop()
    delay(40);
   }
   delay(1000);
+}
+```
+
+### key-grid example
+
+```c
+#include "Monome.h"
+
+Monome m;
+
+void setup()
+{
+  m.setup();
+}
+
+void loop()
+{
+  m.loop();
+
+  for (int i=0; i<256; i++) {
+    byte x = m.keyToCoords(i).x;
+    byte y = m.keyToCoords(i).y;
+    if (m.keyDown[i] == 1){
+      Serial.print("key down: ");
+      Serial.println(i);
+    }
+    
+    if (m.keyPressed[i] == 1){
+      m.setLedInt(x,y,15);
+    } else {;
+      m.setLedInt(x,y,0);
+    }
+    
+    if (m.keyUp[i] == 1){
+      Serial.print("key up: ");
+      Serial.println(i);
+    }
+  }
 }
 ```
 
