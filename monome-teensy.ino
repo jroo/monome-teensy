@@ -1,6 +1,6 @@
-#include "TeensyGrid.h"
+#include "Monome.h"
 
-TeensyGrid g(16, 8);
+Monome g(16, 8);
 
 void setup() {
   g.setup();
