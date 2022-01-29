@@ -58,14 +58,14 @@ void loop()
 }
 ```
 
-update your loop code to make all grid leds pulse
+update your loop code to make all grid leds pulse by setting the intensity of all leds to zero then gradually increasing and decreasing the intensity
 
 ```c
 void loop()
 {
   m.loop();
 
-  m.setAllInt(0);
+  m.setAllInt(0); 
   for (int i=0; i<16; i++) {
     m.setAllInt(i);
     delay(40);
