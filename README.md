@@ -43,7 +43,8 @@ Monome m;
 add monome setup to your sketch
 
 ```c
-void setup() {
+void setup()
+{
   m.setup();
 }
 ```
@@ -51,8 +52,29 @@ void setup() {
 add monome loop to your sketch
 
 ```c
-void loop() {
+void loop()
+{
   m.loop();
+}
+```
+
+update your loop code to make all grid leds pulse
+
+```c
+void loop()
+{
+  m.loop();
+
+  m.setAllInt(0);
+  for (int i=0; i<16; i++) {
+    m.setAllInt(i);
+    delay(40);
+  }
+  for (int i=15; i>=0; i--) {
+   m.setAllInt(i);
+   delay(40);
+  }
+  delay(1000);
 }
 ```
 
