@@ -30,6 +30,32 @@ setMap();
 setLevelMap();
 ```
 
+### grid example
+
+create the Monome object
+
+```c
+#include "Monome.h"
+
+Monome m;
+```
+
+add monome setup to your sketch
+
+```c
+void setup() {
+  m.setup();
+}
+```
+
+add monome loop to your sketch
+
+```c
+void loop() {
+  m.loop();
+}
+```
+
 ### to do:
 - more documentation
 - sys commands
