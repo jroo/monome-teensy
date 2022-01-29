@@ -80,11 +80,6 @@ void loop()
 }
 ```
 
-### key grid example
-
-now let's 
-
-
 ### to do:
 - more documentation
 - sys commands
