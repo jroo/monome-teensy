@@ -30,9 +30,11 @@ setMap();
 setLevelMap();
 ```
 
-### grid example
+### led grid example
 
-create the Monome object
+let's create a sketch that by sets the intensity of all leds in a grid to zero then gradually increases and decreases the intensity
+
+first, create the `Monome` object
 
 ```c
 #include "Monome.h"
@@ -40,7 +42,7 @@ create the Monome object
 Monome m;
 ```
 
-add monome setup to your sketch
+add the `setup()` function of your `Monome` object to your sketch's `setup()` 
 
 ```c
 void setup()
@@ -49,7 +51,7 @@ void setup()
 }
 ```
 
-add monome loop to your sketch
+add the `loop()` function of your `Monome` object to your sketch's `loop()`
 
 ```c
 void loop()
@@ -58,7 +60,7 @@ void loop()
 }
 ```
 
-update your loop code to make all grid leds pulse by setting the intensity of all leds to zero then gradually increasing and decreasing the intensity
+update your loop code to make all grid leds pulse
 
 ```c
 void loop()
@@ -77,6 +79,11 @@ void loop()
   delay(1000);
 }
 ```
+
+### key grid example
+
+now let's 
+
 
 ### to do:
 - more documentation
