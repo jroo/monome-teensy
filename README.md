@@ -149,6 +149,7 @@ encoderPos[4];
 ```
 
 ### to do:
+- use proper directory structure for a teensy lib
 - sys commands
 - support multiple devices at once
 - tilt support
