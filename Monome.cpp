@@ -21,7 +21,7 @@ void Monome::setup()
 
   //initialize encoders
   for (byte e=0; e<4; e++) {
-    encoderPos[e] = 0;
+    encCumulative[e] = 0;
     switchDown[e] = 0;
     switchPressed[e] = 0;
     switchUp[e] = 0;
@@ -71,7 +71,8 @@ void Monome::loop()
       _userial.read();
       byte e = _userial.read();
       int8_t d = _userial.read();
-      encoderPos[e] += d;
+      encDelta[e] = d;
+      encCumulative[e] += d;
       _userial.flush();
     } else if (_userial.peek() == 81) {
       //handle encoder switch up 0x51

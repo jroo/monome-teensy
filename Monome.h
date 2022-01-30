@@ -39,7 +39,8 @@ class Monome
     byte switchDown[4];
     byte switchPressed[4];
     byte switchUp[4];
-    int encoderPos[4];
+    int encDelta[4]; // delta value received via serial
+    int encCumulative[4]; // accumulated delta since initialization
     
   private:
     USBHost _myusb;

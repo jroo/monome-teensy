@@ -18,25 +18,25 @@ see monome-teensy.ino for examples
 grid functions available in the library are:
 
 ```c
-setOverallInt();
-setLed();
-setLedInt();
-setAll();
-setAllInt();    
-setRow();
-setLevelRow();
-setCol();
-setLevelCol();
-setMap();
-setLevelMap();
+setOverallInt();  // set overall intensity of grid
+setLed();         // set individual led on or off
+setLedInt();      // set intensity of individual led
+setAll();         // set all leds on or off
+setAllInt();      // set intensity of all leds
+setRow();         // set an 8x1 row on or off
+setLevelRow();    // set intensity of an 8x1 row
+setCol();         // set a 1x8 col on or off
+setLevelCol();    // set intensity of 1x8 col
+setMap();         // set individual leds in 8x8 grid on or off
+setLevelMap();    // set level of individual leds in 8x8 grid
 ```
 
 arrays to store the status of grid keys:
 
 ```c
-keyDown[256];
-keyPressed[256];
-keyUp[256];
+keyPressed[256];  // true if key is being held down
+keyDown[256];     // true if key down message received
+keyUp[256];       // true if key up message received
 ```
 
 ### led-grid example
@@ -136,19 +136,20 @@ _arc support is *experimental* since i don't have an arc to test this with_
 arc functions:
 
 ```c
-setRingLed();
-setRingAll();
-setRingMap();
-setRingRange();
+setRingLed();   // sets individual led
+setRingAll();   // sets all leds
+setRingMap();   // sets individual values for all leds
+setRingRange(); // sets individual values for a range of leds
 ```
 
 arrays to store the status of the encoders and their respective switches:
 
 ```c
-switchDown[4];
-switchPressed[4];
-switchUp[4];
-encoderPos[4];
+switchPressed[4]; // true if switch is being held down  
+switchDown[4];    // true if switch down message received
+switchUp[4];      // true if switch up message received
+encDelta[4];      // delta value sent from serial
+encCumulative[4]; // cumulative tally of encoder deltas since initialization
 ```
 
 ### to do:
