@@ -128,6 +128,8 @@ void loop()
 
 ### arc support
 
+_arc support is *experimental* since i don't have an arc to test this with_
+
 arc functions:
 
 ```c
