@@ -91,6 +91,8 @@ void loop()
 
 ### key-grid example
 
+this example will light up a key when pressed and send serial messages on key up or down
+
 ```c
 #include "Monome.h"
 
