@@ -2,7 +2,8 @@
 
 Monome m;
 
-void setup() {
+void setup() 
+{
   m.setup();
 
   m.setAllInt(0);
@@ -68,9 +69,10 @@ void setup() {
   m.setAllInt(0);
 }
 
-void loop() {
+void loop() 
+{
   m.loop();
-  
+
   for (int i=0; i<256; i++) {
     byte x = m.keyToCoords(i).x;
     byte y = m.keyToCoords(i).y;
