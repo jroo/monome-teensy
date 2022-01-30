@@ -14,7 +14,7 @@ see monome-teensy.ino for examples
 
 ### functionality: grid
 
-the functions available in the library are:
+grid functions available in the library are:
 
 ```c
 setOverallInt();
@@ -28,6 +28,14 @@ setCol();
 setLevelCol();
 setMap();
 setLevelMap();
+```
+
+arrays to store the status of grid keys:
+
+```c
+keyDown[256];
+keyPressed[256];
+keyUp[256];
 ```
 
 ### led-grid example
@@ -118,9 +126,27 @@ void loop()
 }
 ```
 
+### arc support
+
+arc functions:
+
+```c
+setRingLed();
+setRingAll();
+setRingMap();
+setRingRange();
+```
+
+arrays to store the status of the encoders and their respective switches:
+
+```c
+switchDown[4];
+switchPressed[4];
+switchUp[4];
+encoderPos[4];
+```
+
 ### to do:
-- more documentation
 - sys commands
-- arc support
 - support multiple devices at once
 - tilt support
