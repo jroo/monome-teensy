@@ -1,5 +1,7 @@
 # monome-teensy
 
+<img src="https://user-images.githubusercontent.com/49064/152345870-97aca968-5602-42d4-a92e-1db5b5d983c9.png" width="50%">
+
 allows [teensy development boards](https://www.pjrc.com/teensy/) to communicate with monome grids via [monome serial protocol](https://monome.org/docs/serialosc/serial.txt)
 
 - works with teensy 3.6, 4.0 and 4.1 (when usb host is configured)
