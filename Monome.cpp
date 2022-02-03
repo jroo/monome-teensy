@@ -8,54 +8,38 @@ void Monome::setup()
   _userial.begin(115200);
   Serial.begin(115200);
 
-  //initialize keys
+  //initialize key states
   for (byte y=0; y<16; y++) {
     for (byte x=0; x<16; x++) {
       coords c = {x, y};
       byte k = coordsToKey(c);
-      keyDown[k] = 0;
-      keyUp[k] = 0;
       keyPressed[k] = 0;
     }
   }
 
-  //initialize encoders
+  //initialize encoder states
   for (byte e=0; e<4; e++) {
     encCumulative[e] = 0;
-    switchDown[e] = 0;
     switchPressed[e] = 0;
-    switchUp[e] = 0;
   }
 }
 
 void Monome::loop() 
-{
-  // clear key status to allow for checking again this iteration
-  for (int i=0; i<256; i++) {
-    keyDown[i] = 0;
-    keyUp[i] = 0;
-  }
-
-  // clear switch status to allow for checking again
-  for (int i=0; i<4; i++) {
-    switchDown[i] = 0;
-    switchUp[i] = 0;
-  }
-  
+{ 
   _myusb.Task();
 
   // handle messages from monome device
   while (_userial.available()) {
     if (_userial.peek() == 33) {
       //handle key down message 0x21
-      _userial.read(); //throw away first byte
+      _userial.read(); //throw away first byte that we just peeked at
       byte x = _userial.read();
       byte y = _userial.read();
       coords c = {x, y};
       byte k = coordsToKey(c);
-      keyDown[k] = 1;
       keyPressed[k] = 1;
       _userial.flush();
+      keyDownCallback(k);
     } else if (_userial.peek() == 32) {
       //handle key up down message 0x20
       _userial.read();
@@ -63,31 +47,31 @@ void Monome::loop()
       byte y = _userial.read();
       coords c = {x, y};
       byte k = coordsToKey(c);
-      keyUp[k] = 1;
       keyPressed[k] = 0;
       _userial.flush();
+      keyUpCallback(k);
     } else if (_userial.peek() == 80) {
       //handle encoder change 0x50
       _userial.read();
       byte e = _userial.read();
       int8_t d = _userial.read();
-      encDelta[e] = d;
       encCumulative[e] += d;
       _userial.flush();
+      encChangeCallback(e, d);
     } else if (_userial.peek() == 81) {
       //handle encoder switch up 0x51
       _userial.read();
       byte e = _userial.read();
-      switchUp[e] = 1;
       switchPressed[e] = 0;
       _userial.flush();
+      switchUpCallback(e);
     } else if (_userial.peek() == 82) {
       //handle encoder switch down 0x52
       _userial.read();
       byte e = _userial.read();
-      switchDown[e] = 1;
       switchPressed[e] = 1;
       _userial.flush();
+      switchDownCallback(e);
     }
   }
 }

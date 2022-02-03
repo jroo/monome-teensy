@@ -26,9 +26,7 @@ class Monome
     void setLevelCol(byte x, byte y, byte d[8]);
     void setMap(byte x, byte y, byte d[8]);
     void setLevelMap(byte x, byte y, byte d[32]);
-    byte keyDown[256];
     byte keyPressed[256];
-    byte keyUp[256];
     byte coordsToKey(coords c);
     coords keyToCoords(byte k);
 
@@ -36,11 +34,14 @@ class Monome
     void setRingAll(byte n, byte a);
     void setRingMap(byte n, byte d[32]);
     void setRingRange(byte n, byte x1, byte x2, byte a);
-    byte switchDown[4];
     byte switchPressed[4];
-    byte switchUp[4];
-    int encDelta[4]; // delta value received via serial
     int encCumulative[4]; // accumulated delta since initialization
+
+    void (*keyDownCallback)(byte k);
+    void (*keyUpCallback)(byte k);
+    void (*encChangeCallback)(byte e, int d);
+    void (*switchDownCallback)(byte e);
+    void (*switchUpCallback)(byte e);
     
   private:
     USBHost _myusb;
@@ -53,6 +54,7 @@ class Monome
     void _send3x32(byte b1, byte b2, byte b3, byte b4[32]);
     void _send4(byte b1, byte b2, byte b3, byte b4);
     void _send5(byte b1, byte b2, byte b3, byte b4, byte b5);
+
 };
 
 #endif

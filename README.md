@@ -35,8 +35,13 @@ arrays to store the status of grid keys:
 
 ```c
 keyPressed[256];  // true if key is being held down
-keyDown[256];     // true if key down message received
-keyUp[256];       // true if key up message received
+```
+
+available callbacks
+
+```c
+void (*keyDownCallback)(byte k);
+void (*keyUpCallback)(byte k);
 ```
 
 ### led-grid example
@@ -101,6 +106,8 @@ Monome m;
 void setup()
 {
   m.setup();
+  m.keyDownCallback = &kDown;
+  m.keyUpCallback = &kUp;
 }
 
 void loop()
@@ -110,22 +117,23 @@ void loop()
   for (int i=0; i<256; i++) {
     byte x = m.keyToCoords(i).x;
     byte y = m.keyToCoords(i).y;
-    if (m.keyDown[i] == 1){
-      Serial.print("key down: ");
-      Serial.println(i);
-    }
     
     if (m.keyPressed[i] == 1){
       m.setLedInt(x,y,15);
     } else {;
       m.setLedInt(x,y,0);
     }
-    
-    if (m.keyUp[i] == 1){
-      Serial.print("key up: ");
-      Serial.println(i);
-    }
   }
+}
+
+void kDown(byte k) {
+  Serial.print("Key Down: ");
+  Serial.println(k);
+}
+
+void kUp(byte k) {
+  Serial.print("Key Up: ");
+  Serial.println(k);
 }
 ```
 
@@ -146,10 +154,15 @@ arrays to store the status of the encoders and their respective switches:
 
 ```c
 switchPressed[4]; // true if switch is being held down  
-switchDown[4];    // true if switch down message received
-switchUp[4];      // true if switch up message received
-encDelta[4];      // delta value sent from serial
 encCumulative[4]; // cumulative tally of encoder deltas since initialization
+```
+
+available callbacks
+
+```c
+void (*encChangeCallback)(byte e, int d);
+void (*switchDownCallback)(byte e);
+void (*switchUpCallback)(byte e);
 ```
 
 ### to do:

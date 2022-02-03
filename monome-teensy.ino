@@ -5,7 +5,12 @@ Monome m;
 void setup() 
 {
   m.setup();
-
+  m.keyDownCallback = &kDown;
+  m.keyUpCallback = &kUp;
+  m.encChangeCallback = &eChg;
+  m.switchDownCallback = &sDown;
+  m.switchUpCallback = &sUp;
+  
   m.setAllInt(0);
   int i = random(256);
   m.setRow(0,0,i);
@@ -76,20 +81,33 @@ void loop()
   for (int i=0; i<256; i++) {
     byte x = m.keyToCoords(i).x;
     byte y = m.keyToCoords(i).y;
-    if (m.keyDown[i] == 1){
-      Serial.print("key down: ");
-      Serial.println(i);
-    }
     
     if (m.keyPressed[i] == 1){
       m.setLedInt(x,y,15);
     } else {;
       m.setLedInt(x,y,0);
     }
-    
-    if (m.keyUp[i] == 1){
-      Serial.print("key up: ");
-      Serial.println(i);
-    }
   }
+}
+
+void kDown(byte k) {
+  Serial.print("Key Down: ");
+  Serial.println(k);
+}
+
+void kUp(byte k) {
+  Serial.print("Key Up: ");
+  Serial.println(k);
+}
+
+void eChg() {
+  Serial.println("Encoder Change");
+}
+
+void sDown() {
+  Serial.println("Switch Down");
+}
+
+void sUp() {
+  Serial.println("Switch Up");
 }
