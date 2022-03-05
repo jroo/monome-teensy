@@ -1,8 +1,22 @@
-#ifndef Monome_h
-#define Monome_h
+/*
+  Monome.h - Library for communicating with Monome devices over USB via monome serial protocol.
+  Created by Josh Ruihley, January 25, 2022.
+*/
+#ifndef MONOME_H
+#define MONOME_H
 
+#if ARDUINO
 #include "Arduino.h"
+#else
+#include <inttypes.h>
+typedef uint8_t byte;
+#endif
+
+#if defined(ARDUINO_TEENSY36) || defined(ARDUINO_TEENSY40) || defined(ARDUINO_TEENSY41)
 #include "USBHost_t36.h"
+#else
+#error *** Monome-teensy only works with Teensy 3.6 or Teensy 4.x. Please select it in Tools > Boards ***
+#endif
 
 struct coords {
   byte x;

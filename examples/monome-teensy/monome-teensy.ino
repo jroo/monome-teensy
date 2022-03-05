@@ -1,9 +1,11 @@
-#include "Monome.h"
+#include <Monome.h>
 
 Monome m;
 
 void setup() 
 {
+  Serial.begin(115200);
+  
   m.setup();
   m.keyDownCallback = &kDown;
   m.keyUpCallback = &kUp;
