@@ -13,7 +13,11 @@ monome-teensy is a library that allows teensy devices configured as usb hosts to
 
 the library is designed to work with all monome grids but has only been tested on a varibright 128 grid. to date it hasn't been confirmed to work with other grids but there's no reason it shouldn't work. there is also experimental support for arc but it's untested since i'll probably never have an arc.
 
-see monome-teensy.ino for examples
+see the examples directory for examples
+
+### library installation
+
+follow [these instructions from Arduino](https://docs.arduino.cc/software/ide-v1/tutorials/installing-libraries#importing-a-zip-library) to install this library. you can download a zip of this library from the 'Code' dropdown menu at the top of this page. 
 
 ### functionality: grid
 
@@ -168,7 +172,6 @@ void (*switchUpCallback)(byte e);
 ```
 
 ### to do:
-- use proper directory structure for a teensy lib
 - sys commands
 - support multiple devices at once
 - tilt support
