@@ -1,3 +1,7 @@
+/*
+  Monome.h - Library for communicating with Monome devices over USB via monome serial protocol.
+  Created by Josh Ruihley, January 25, 2022.
+*/
 #include "Monome.h"
 
 Monome::Monome() {}
@@ -6,7 +10,6 @@ void Monome::setup()
 {
   _myusb.begin();
   _userial.begin(115200);
-  Serial.begin(115200);
 
   //initialize key states
   for (byte y=0; y<16; y++) {

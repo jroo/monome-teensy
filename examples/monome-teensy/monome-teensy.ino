@@ -1,9 +1,11 @@
-#include "Monome.h"
+#include <Monome.h>
 
 Monome m;
 
 void setup() 
 {
+  Serial.begin(115200);
+  
   m.setup();
   m.keyDownCallback = &kDown;
   m.keyUpCallback = &kUp;
@@ -100,14 +102,14 @@ void kUp(byte k) {
   Serial.println(k);
 }
 
-void eChg() {
+void eChg(byte e, int d) {
   Serial.println("Encoder Change");
 }
 
-void sDown() {
+void sDown(byte e) {
   Serial.println("Switch Down");
 }
 
-void sUp() {
+void sUp(byte e) {
   Serial.println("Switch Up");
 }
